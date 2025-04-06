@@ -1,0 +1,19 @@
+#standardSQL
+SELECT
+  COUNT(DISTINCT fullVisitorId) AS number_of_unique_visitors,
+  eCommerceAction_type,
+  CASE eCommerceAction_type
+  WHEN '0' THEN 'Unknown'
+  WHEN '1' THEN 'Click through of product lists'
+  WHEN '2' THEN 'Product detail views'
+  WHEN '3' THEN 'Add product(s) to cart'
+  WHEN '4' THEN 'Remove product(s) from cart'
+  WHEN '5' THEN 'Check out'
+  WHEN '6' THEN 'Completed purchase'
+  WHEN '7' THEN 'Refund of purchase'
+  WHEN '8' THEN 'Checkout options'
+  ELSE 'ERROR'
+  END AS eCommerceAction_type_label
+FROM `data-to-insights.ecommerce.all_sessions`
+GROUP BY eCommerceAction_type
+ORDER BY eCommerceAction_type;
