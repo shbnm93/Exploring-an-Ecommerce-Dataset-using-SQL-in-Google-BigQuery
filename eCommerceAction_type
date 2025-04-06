@@ -1,0 +1,7 @@
+#standardSQL
+SELECT
+  COUNT(DISTINCT fullVisitorId) AS number_of_unique_visitors,
+  eCommerceAction_type
+FROM `data-to-insights.ecommerce.all_sessions`
+GROUP BY eCommerceAction_type
+ORDER BY eCommerceAction_type;
