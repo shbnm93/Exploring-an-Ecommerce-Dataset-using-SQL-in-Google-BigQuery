@@ -1,0 +1,11 @@
+#standardSQL
+SELECT
+  COUNT(*) AS product_views,
+  COUNT(productQuantity) AS orders,
+  SUM(productQuantity) AS quantity_product_ordered,
+  v2ProductName
+FROM `data-to-insights.ecommerce.all_sessions`
+WHERE type = 'PAGE'
+GROUP BY v2ProductName
+ORDER BY product_views DESC
+LIMIT 5;
